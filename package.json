@@ -47,13 +47,14 @@
     "rimraf": "^2.4.3",
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",
-    "webpack-hot-middleware": "^2.6.0"
+      "webpack-hot-middleware": "^2.6.0",
+      "css-loader": "^0.23.1",
+      "less-loader": "^2.2.2",
+      "style-loader": "^0.13.0"
   },
   "dependencies": {
-    "css-loader": "^0.23.1",
-    "less-loader": "^2.2.2",
+    "d3": "^3.5.16",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3",
-    "style-loader": "^0.13.0"
+    "react-dom": "^0.14.3"
   }
 }
