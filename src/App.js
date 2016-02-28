@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { NICE, SUPER_NICE } from './colors';
 
+require('./style.less');
+
 class Counter extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +15,6 @@ class Counter extends Component {
       counter: this.state.counter + this.props.increment
     });
   }
-
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -21,7 +22,7 @@ class Counter extends Component {
   render() {
     return (
       <h1 style={{ color: this.props.color }}>
-        Counter ({this.props.increment}): {this.state.counter}
+        Livecoding Counter ({this.props.increment}): {this.state.counter}
       </h1>
     );
   }

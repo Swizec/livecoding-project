@@ -17,11 +17,22 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
+  // require('./code') vs. require('./code.jsx');
+  // import foo from './code';
+  resolve: {
+      extensions: ['', '.js', '.jsx']
+  },
   module: {
     loaders: [{
-      test: /\.jsx?/,
+      test: /\.js|\.jsx?/,
       loaders: ['babel'],
       include: path.join(__dirname, 'src')
+    },
+    {
+        test: /\.less$/,
+        loader: "style!css!less"
     }]
+      // require('style.less')
+      // --> <link ...
   }
 };
