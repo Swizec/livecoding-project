@@ -10,10 +10,6 @@ class Dataviz extends Component {
 
         this.pie = d3.layout.pie()
                      .value((d) => d);
-
-        this.arc = d3.svg.arc()
-                     .outerRadius(100)
-                     .innerRadius(50);
     }
 
     render() {
@@ -28,7 +24,9 @@ class Dataviz extends Component {
         return (
             <g transform={translate}>
                 {pie.map((d, i) =>
-                    (<Arc arc={this.arc(d)}
+                    (<Arc data={d}
+                        innerRadius={50}
+                        outerRadius={120}
                           i={i}
                           key={`arc-${i}`} />)
                  )}
