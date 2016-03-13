@@ -2,14 +2,12 @@
 import React, { Component } from 'react';
 import d3 from 'd3';
 
-import Arc from './Arc';
+import Piechart from '../Piechart';
 
 class Dataviz extends Component {
     constructor() {
         super();
 
-        this.pie = d3.layout.pie()
-                     .value((d) => d);
     }
 
     render() {
@@ -18,18 +16,20 @@ class Dataviz extends Component {
                            .length,
             didnt_get = this.props.data.length - got_visa;
 
-        let pie = this.pie([got_visa, didnt_get]),
-            translate = `translate(${this.props.x}, ${this.props.y})`;
+        let translate = `translate(${this.props.x}, ${this.props.y})`;
 
         return (
             <g transform={translate}>
-                {pie.map((d, i) =>
-                    (<Arc data={d}
-                        innerRadius={50}
-                        outerRadius={120}
-                          i={i}
-                          key={`arc-${i}`} />)
-                 )}
+                <Piechart outerRadius={120}
+                          innerRadius={60}
+                          x={0}
+                          y={0}
+                          data={[got_visa, didnt_get]} />
+            <Piechart outerRadius={60}
+            innerRadius={20}
+            x={300}
+            y={100}
+            data={[10,20,40]} />
             </g>
         )
     }
