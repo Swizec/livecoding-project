@@ -18,18 +18,25 @@ class Dataviz extends Component {
 
         let translate = `translate(${this.props.x}, ${this.props.y})`;
 
+        let exampleData = [{value: 10, label: "Ten"},
+                            {value: 20, label: "Twenty"},
+                            {value: 40, label: "Forty"}];
+
+            let realData = [{value: got_visa, label: "Win"},
+                             {value: didnt_get, label: "Fail"}];
+
         return (
             <g transform={translate}>
                 <Piechart outerRadius={120}
                           innerRadius={60}
                           x={0}
                           y={0}
-                          data={[got_visa, didnt_get]} />
+                          data={realData} />
             <Piechart outerRadius={60}
-            innerRadius={20}
-            x={300}
-            y={100}
-            data={[10,20,40]} />
+                      innerRadius={20}
+                      x={300}
+                      y={100}
+                      data={exampleData} />
             </g>
         )
     }
