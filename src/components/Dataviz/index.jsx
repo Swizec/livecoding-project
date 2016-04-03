@@ -4,6 +4,7 @@ import d3 from 'd3';
 import _ from 'lodash';
 
 import Piechart from '../Piechart';
+import Histogram from '../Histogram';
 
 class Dataviz extends Component {
     constructor() {
@@ -81,19 +82,42 @@ class Dataviz extends Component {
                             (d) => this.titleSalary(d, 'engineer')));
 
 
+        let engineerData = this.props.data.filter(
+            (d) => this.cleanJobTitle(d.job_title) == 'engineer'),
+
+            programmerData = this.props.data.filter(
+                (d) => this.cleanJobTitle(d.job_title) == 'programmer'),
+
+            developerData = this.props.data.filter(
+                (d) => this.cleanJobTitle(d.job_title) == 'developer');
+
 
         return (
             <g transform={translate}>
-                <Piechart outerRadius={120}
-                          innerRadius={60}
-                          x={0}
-                          y={0}
-                          data={realData} />
-                <Piechart outerRadius={300}
-                          innerRadius={150}
-                          x={300}
-                          y={100}
-                          data={pieData} />
+                <Histogram data={this.props.data}
+                           value={(d) => d.base_salary}
+                           x={0}
+                           y={0}
+                           width={400}
+                           height={200} />
+                <Histogram data={engineerData}
+                           value={(d) => d.base_salary}
+                           x={450}
+                           y={0}
+                           width={400}
+                           height={200} />
+                <Histogram data={programmerData}
+                           value={(d) => d.base_salary}
+                           x={0}
+                           y={220}
+                           width={400}
+                           height={200} />
+                <Histogram data={developerData}
+                           value={(d) => d.base_salary}
+                           x={450}
+                           y={220}
+                           width={400}
+                           height={200} />
             </g>
         )
     }

@@ -44,8 +44,8 @@ class App extends Component {
         return (
             <svg width="800" height="600">
                 <Dataviz data={data}
-            x={200}
-            y={200} />
+                         x={0}
+                         y={0} />
             </svg>
         );
     }
