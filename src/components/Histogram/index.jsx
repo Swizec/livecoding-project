@@ -29,12 +29,22 @@ class Histogram extends Component {
         this.xScale
             .domain([d3.min(renderData, (d) => d.x),
                      d3.max(renderData, (d) => d.x)])
-            .range([0, props.width]);
+            .range([0+props.margin.left,
+                    props.width-props.margin.right]);
+
+
+        if (renderData.length) {
+            let barWidth = this.xScale(renderData[1].dx),
+                [start, end] = this.xScale.range();
+
+            this.xScale.range([start, end-barWidth]);
+        }
 
         this.yScale
             .domain([d3.min(renderData, (d) => d.y),
                      d3.max(renderData, (d) => d.y)])
-            .range([0, props.height]);
+            .range([0+props.margin.bottom,
+                    props.height-props.margin.top]);
     }
 
     renderBar(d, i) {
@@ -53,7 +63,8 @@ class Histogram extends Component {
 
         return (
             <g transform={translate}>
-                <rect x="0" y="0" width={this.props.width} height={this.props.height} style={{fill: 'white', stroke: 'lightgrey', strokeWidth: '1px'}} />
+                <text x="0" y="20" textAnchor="start"
+                      className="lead">{this.props.title}</text>
                 {renderData.map((d, i) => this.renderBar(d, i))}
             </g>
         );
@@ -61,7 +72,10 @@ class Histogram extends Component {
 }
 
 Histogram.defaultProps = {
-    value: (d) => d
+    value: (d) => d,
+    margin: {
+        top: 25, right: 0, bottom: 0, left: 0
+    }
 }
 
 export default Histogram;

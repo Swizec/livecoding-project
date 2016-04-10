@@ -42,11 +42,14 @@ class App extends Component {
         let data = this.state.rawData;
 
         return (
-            <svg width="800" height="600">
-                <Dataviz data={data}
-                         x={0}
-                         y={0} />
-            </svg>
+            <div className="container">
+                <h1>Software salary distributions</h1>
+                <svg width="800" height="600">
+                    <Dataviz data={data}
+                             x={0}
+                             y={0} />
+                </svg>
+            </div>
         );
     }
 }
