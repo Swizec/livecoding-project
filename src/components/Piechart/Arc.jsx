@@ -24,15 +24,11 @@ class Arc extends Component {
         this.arc.outerRadius(newProps.outerRadius);
     }
 
-    drawArc() {
+    render() {
         return (
             <path d={this.arc(this.props.data)}
-                  style={{fill: colors(this.props.i)}}></path>
-        )
-    }
-
-    render() {
-        return this.drawArc();
+                  style={{fill: this.props.color}}></path>
+        );
     }
 }
 
@@ -43,10 +39,10 @@ class LabeledArc extends Arc {
 
         return (
             <g>
-                {this.drawArc()}
-            <text transform={labelTranslate}>
-                {this.props.data.data.label}
-            </text>
+                {super.render()}
+                <text transform={labelTranslate}>
+                    {this.props.data.data.label}
+                </text>
             </g>
         );
     }
